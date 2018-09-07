@@ -2,8 +2,8 @@
 
 (defn- image
   [image]
-  [:div {:style {:width "84px"
-                 :height "84px"
+  [:div {:style {:width "96px"
+                 :height "96px"
                  :background-image (str "url(" image ")")
                  :background-size "cover"}}])
 
