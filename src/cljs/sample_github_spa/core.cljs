@@ -3,7 +3,7 @@
    [reagent.core :as reagent]
    [re-frame.core :as re-frame]
    [sample-github-spa.events :as events]
-   [sample-github-spa.views :as views]
+   [sample-github-spa.repository.list-component :as repository-list]
    [sample-github-spa.config :as config]
    ))
 
@@ -15,7 +15,12 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
+  (reagent/render [repository-list/component [{:id 1
+                                               :name "hoge"
+                                               :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}
+                                              {:id 2
+                                               :name "fuga"
+                                               :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}]]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
