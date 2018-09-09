@@ -1,4 +1,6 @@
 (ns sample-github-spa.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:router {:title ""
+            :component (fn [] [:div "loading..."])
+            :params {}}})

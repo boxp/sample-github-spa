@@ -2,7 +2,12 @@
 /target
 /*-init.clj
 /resources/public/js/compiled
+/resources/public/prod/js/compiled
+/dev-resources
+/nashhorn_code_cache
 out
 *.swp
 .nrepl-port
 .lein-repl-history
+.lein-failures
+.rebel_readline_history
