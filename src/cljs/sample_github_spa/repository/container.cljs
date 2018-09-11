@@ -1,24 +1,20 @@
 (ns sample-github-spa.repository.container
   (:require [cljs.loader :as loader]
-            [sample-github-spa.repository.component :as component]))
+            [reagent.core :as reagent]
+            [sample-github-spa.repository.component :as component]
+            [sample-github-spa.repository.subs :as subs]
+            [sample-github-spa.repository.events :as events]
+            [re-frame.core :as re-frame]))
 
+;; metaデータがcljs.loader/loadによって上書きされるためreagent/create-classでLifecycleを定義している
 (defn ^:export grid-box
   [params]
-  [component/grid-box [{:id 1
-                        :name "hoge"
-                        :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}
-                       {:id 2
-                        :name "fuga"
-                        :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}
-                       {:id 3
-                        :name "fuga"
-                        :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}
-                       {:id 4
-                        :name "fuga"
-                        :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}
-                       {:id 5
-                        :name "fuga"
-                        :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}]])
+  (let [repositories (re-frame/subscribe [::subs/repositories])]
+    (reagent/create-class
+     {:component-did-mount (fn []
+                             (re-frame/dispatch [::events/refresh-own-repositories]))
+      :reagent-render (fn [params]
+                        [component/grid-box @repositories])})))
 
 (defn ^:export detail
   [params]

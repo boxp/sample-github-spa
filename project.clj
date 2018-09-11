@@ -19,7 +19,8 @@
                  [reagent "0.8.1"]
                  [re-frame "0.10.6"]
                  [secretary "1.2.3"]
-                 [kibu/pushy "0.3.8"]]
+                 [kibu/pushy "0.3.8"]
+                 [day8.re-frame/http-fx "0.1.6"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 

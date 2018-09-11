@@ -3,4 +3,8 @@
 (def default-db
   {:router {:title ""
             :component (fn [] [:div "loading..."])
-            :params {}}})
+            :params {}}
+   :repository {:repositories []
+                :page 1}
+   :token ""
+   :api-error nil})

@@ -15,3 +15,8 @@
        (assoc-in [:router :title] title)
        (assoc-in [:router :component] component)
        (assoc-in [:router :params] params))))
+
+(re-frame/reg-event-db
+ ::api-error
+ (fn [db [_ error]]
+   (assoc db :api-error error)))
