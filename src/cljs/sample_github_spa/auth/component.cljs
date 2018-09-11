@@ -1,7 +1,7 @@
 (ns sample-github-spa.auth.component)
 
 (defn- github-login-button
-  [link]
+  [handle-click-github-login-button]
   [:a {:style {:height "60px"
                :background-color "#393e46"
                :display "flex"
@@ -11,7 +11,7 @@
                :border-radius "8px"
                :text-decoration "none"
                :color "#eeeeee"}
-       :href link}
+       :on-click handle-click-github-login-button}
    [:span {:style {:width "28px"
                    :height "28px"
                    :font-size "28px"}}
@@ -21,7 +21,7 @@
     "Login with GitHub"]])
 
 (defn box
-  [github-login-button-link]
+  [handle-click-github-login-button]
   [:div {:style {:width "100%"
                  :height "30vh"
                  :margin-top "20vh"
@@ -34,4 +34,4 @@
                     :font-weight "bold"
                     :font-size "32px"}}
      "GitHub SPA Sample"]]
-   [github-login-button github-login-button-link]])
+   [github-login-button handle-click-github-login-button]])
