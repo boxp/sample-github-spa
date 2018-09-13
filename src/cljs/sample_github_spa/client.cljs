@@ -16,19 +16,21 @@
     (enable-console-print!)
     (println "dev mode")))
 
+(def history
+  (pushy/pushy secretary/dispatch!
+               (fn [x] (when (secretary/locate-route x) x))))
+
 ;; https://github.com/kibu-australia/pushy#routing-libraries から輸入
 (defn hook-history []
-  (let [h (pushy/pushy secretary/dispatch!
-                       (fn [x] (when (secretary/locate-route x) x)))]
-    (pushy/start! h)))
+  (pushy/start! history))
 
-(defn mount-root []
+(defn ^:export mount-root []
   (re-frame/clear-subscription-cache!)
   (reagent/render [component/app]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
-  (re-frame/dispatch-sync [::events/initialize-db])
+  (re-frame/dispatch-sync [::events/initialize history])
   (dev-setup)
   (hook-history)
   (mount-root))

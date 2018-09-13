@@ -17,7 +17,7 @@
 (defroute repository-path "/repository" []
   (loader/load :repository
                (fn []
-                 (re-frame/dispatch [::events/push "Repository" (doto (resolve 'sample-github-spa.repository.container/grid-box) (-> meta println)) {}]))))
+                 (re-frame/dispatch [::events/push "Repository" (resolve 'sample-github-spa.repository.container/grid-box) {}]))))
 
 (defroute repository-detail-path "/repository/:id" [id]
   (loader/load :repository

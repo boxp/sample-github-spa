@@ -1,4 +1,6 @@
-(ns sample-github-spa.repository.component)
+(ns sample-github-spa.repository.component
+  (:require
+    [sample-github-spa.component]))
 
 (defn- grid-item-image
   [image]
@@ -28,7 +30,7 @@
     (-> repository :name)]])
 
 (defn grid-box
-  [repositories]
+  [{:keys [repositories] :as params}]
   [:div {:style {:display "flex"
                  :justify-content "space-around"
                  :flex-wrap "wrap"

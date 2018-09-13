@@ -5,6 +5,8 @@
             :component (fn [] [:div "loading..."])
             :params {}}
    :repository {:repositories []
+                :per-page 20
                 :page 1}
    :token ""
-   :api-error nil})
+   :api-error nil
+   :history nil})

@@ -6,3 +6,9 @@
  ::repositories
  (fn [db]
    (-> db :repository :repositories)))
+
+(re-frame/reg-sub
+  ::should-load-more?
+  (fn [db]
+    (zero? (mod (-> db :repository :repositories count)
+                (-> db :repository :per-page)))))
