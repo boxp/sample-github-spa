@@ -7,6 +7,9 @@
    :repository {:repositories []
                 :per-page 20
                 :page 1}
+   :activity {:acitivities []
+              :per-page 20
+              :page 1}
    :token ""
    :api-error nil
    :history nil})
