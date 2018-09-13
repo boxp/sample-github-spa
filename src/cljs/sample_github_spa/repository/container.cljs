@@ -24,9 +24,8 @@
                                                                         :load-fn handle-load-more}]]])})))
 
 (defn ^:export detail
-  [params]
-  [component/detail {:id 1
-                     :name "hoge"
-                     :owner {:avatar_url "https://dummyimage.com/64x64/000/fff"}}])
+  [{:keys [id] :as params}]
+  (let [repository (re-frame/subscribe [::subs/get-repository-by-id (js/Number id)])]
+    [component/detail @repository]))
 
 (loader/set-loaded! :repository)
