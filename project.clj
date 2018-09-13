@@ -35,7 +35,8 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.9.10"]]
+   {:dependencies [[binaryage/devtools "0.9.10"]
+                   [day8.re-frame/re-frame-10x "0.3.3"]]
     :plugins      [[lein-figwheel "0.5.16"]
                    [lein-cljfmt "0.6.0"]]}
    :prod { }
@@ -46,17 +47,18 @@
    [{:id           "dev"
      :source-paths ["src/cljs"]
      :figwheel     {:on-jsload "sample-github-spa.client/mount-root"}
-     :compiler     {:main                 sample-github-spa.client
+     :compiler     {:main sample-github-spa.client
                     :output-dir      "resources/public/js/compiled"
                     :asset-path      "js/compiled"
                     :source-map-timestamp true
-                    :preloads             [devtools.preload]
+                    :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+                    :preloads             [devtools.preload day8.re-frame-10x.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
                     :modules ~(modules "resources/public/js/compiled")}}
 
     {:id           "min"
      :source-paths ["src/cljs"]
-     :compiler     {:main            sample-github-spa.client
+     :compiler     {:main sample-github-spa.client
                     :output-dir      "resources/public/prod/js/compiled"
                     :asset-path      "js/compiled"
                     :optimizations   :advanced
