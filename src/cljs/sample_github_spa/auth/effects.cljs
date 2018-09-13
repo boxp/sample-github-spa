@@ -6,7 +6,8 @@
 (re-frame/reg-fx
   ::initialize-firebase
   (fn [config]
-    (js/firebase.initializeApp (clj->js config))))
+    (->> (js/firebase.initializeApp (clj->js config))
+         (set! (.-fb js/window)))))
 
 (re-frame/reg-fx
   ::github-login
@@ -14,11 +15,11 @@
     (let [provider (doto (js/firebase.auth.GithubAuthProvider.)
                      (.addScope "repo")
                      (.addScope "user"))]
-      (.. js/firebase auth (signInWithRedirect provider)))))
+      (.. js/window -fb (auth) (signInWithRedirect provider)))))
 
 (re-frame/reg-fx
   ::get-redirect-result
   (fn [{:keys [on-success on-failure] :as options}]
-    (-> (.. js/firebase auth getRedirectResult)
+    (-> (.. js/window -fb auth getRedirectResult)
         (.then #(re-frame/dispatch (conj on-success %)))
         (.catch #(re-frame/dispatch (conj on-failure %))))))
