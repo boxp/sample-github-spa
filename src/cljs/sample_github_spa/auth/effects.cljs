@@ -1,7 +1,8 @@
 (ns sample-github-spa.auth.effects
   (:require
     [re-frame.core :as re-frame]
-    [cljsjs.firebase]))
+    [firebase.app]
+    [firebase.auth]))
 
 (re-frame/reg-fx
   ::initialize-firebase

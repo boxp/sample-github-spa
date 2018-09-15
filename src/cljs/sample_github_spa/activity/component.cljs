@@ -11,15 +11,19 @@
        :href (str "/activity/" (:id activity))}
    [:div {:style {:width "64px"
                   :height "64px"
-                  :background-image (str "url(" (-> activity :actor :avatar_url) ")")
+                  :background-image (str "url(" (-> activity :repository :owner :avatar_url) ")")
                   :background-size "cover"}}]
-   [:span {:style {:font-size "24px"
+   [:span {:style {:font-size "16px"
                    :margin-left "16px"
-                   :color "#393e46"}}
-    (-> activity :payload)]])
+                   :color "#393e46"
+                   :text-overflow "ellipsis"
+                   :overflow "hidden"
+                   :white-space "nowrap"
+                   :width "72%"}}
+    (-> activity :subject :title)]])
 
 (defn timeline
-  [activities]
+  [{:keys [activities]}]
   [:div {:style {:width "100%"
                  :display "flex"
                  :justify-content "flex-start"
@@ -27,7 +31,7 @@
                  :box-sizing "border-box"
                  :padding "0 16px 12px 16px"}}
    (map (fn [activity]
-          ^{:key (:id activities)} [:div {:style {:margin-top "12px"}} [timeline-item activity]])
+          ^{:key (:id activity)} [:div {:style {:margin-top "12px"}} [timeline-item activity]])
         activities)])
 
 (defn- detail-image
@@ -41,13 +45,15 @@
   [title content]
   [:div {:style {:display "flex"
                  :justify-content "space-between"
+                 :flex-direction "column"
                  :color "#222831"
                  :width "100%"}}
-   [:span title]
-   [:span content]])
+   [:span {:style {:font-weight "bold"
+                   :font-size "24px"}} title]
+   [:span {:style {:margin-top "8px"}} content]])
 
 (defn detail
-  [activity]
+  [{:keys [activity]}]
   [:div {:style {:width "100%"
                  :height "100%"
                  :display "flex"
@@ -55,11 +61,11 @@
                  :align-items "center"
                  :flex-direction "column"
                  :padding "32px 0 32px 0"}}
-   [detail-image (-> activity :actor :avatar_url)]
+   [detail-image (-> activity :repository :owner :avatar_url)]
    [:div {:style {:width "70%"
                   :box-sizing "border-box"
                   :padding "48px 0 0 0"
                   :font-size "24px"
                   :display "flex"
                   :flex-direction "column"}}
-    [detail-information-item "payload:" (-> activity :payload)]]])
+    [detail-information-item "subject title" (-> activity :subject :title)]]])

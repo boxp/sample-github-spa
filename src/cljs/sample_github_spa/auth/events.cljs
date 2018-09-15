@@ -23,14 +23,24 @@
     {::effects/github-login {}}))
 
 (re-frame/reg-event-fx
+  ::store-token
+  (fn [{:keys [db]} [_ access-token]]
+    {:db (-> db
+             (assoc :token access-token))
+     ::sample-github-spa.effects/set-localstorage ["access-token" access-token]}))
+
+(re-frame/reg-event-fx
+  ::redirect-to-home
+  (fn [_ _]
+    {::sample-github-spa.effects/route ["/repository"]}))
+
+(re-frame/reg-event-fx
   ::on-success-get-access-token
   (fn [{:keys [db]} [_ result]]
     (let [access-token (some-> result .-credential .-accessToken)]
       (when access-token
-        {:db (-> db
-                 (assoc :token access-token))
-         ::sample-github-spa.effects/set-localstorage ["access-token" access-token]
-         ::sample-github-spa.effects/route ["/repository"]}))))
+        {:dispatch-n [[::store-token access-token]
+                      [::redirect-to-home]]}))))
 
 (re-frame/reg-event-db
   ::on-failure-get-access-token

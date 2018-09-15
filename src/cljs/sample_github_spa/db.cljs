@@ -10,6 +10,6 @@
    :activity {:acitivities []
               :per-page 20
               :page 1}
-   :token ""
+   :token nil
    :api-error nil
    :history nil})

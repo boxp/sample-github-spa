@@ -2,11 +2,13 @@
   (:require [reagent.core :as r]
             [re-frame.core :as re-frame]
             [secretary.core :as secretary]
+            [sample-github-spa.events]
             [sample-github-spa.subs]))
 
-(defn- logout []
+(defn- logout
+  [{:keys [handle-logout]}]
   [:a {:style {:text-decoration "none"}
-       :href "/"}
+       :on-click handle-logout}
    [:span {:style {:font-size "24px"
                    :width "24px"
                    :height "24px"
@@ -14,7 +16,7 @@
     [:i.fas.fa-sign-out-alt]]])
 
 (defn- header
-  [title]
+  [{:keys [title handle-logout]}]
   [:div {:style {:width "100%"
                  :height "56px"
                  :display "flex"
@@ -29,7 +31,7 @@
                    :font-size "20px"
                    :font-weight "bold"}}
     title]
-   (when-not (= title "Login") [logout])])
+   (when-not (= title "Login") [logout {:handle-logout handle-logout}])])
 
 (defn- nav-repository []
   [:a {:style {:text-decoration "none"
@@ -73,9 +75,11 @@
   [:span "loading..."])
 
 (defn app []
-  (let [router (re-frame/subscribe [::sample-github-spa.subs/router])]
+  (let [router (re-frame/subscribe [::sample-github-spa.subs/router])
+        handle-logout #(re-frame/dispatch [::sample-github-spa.events/logout])]
     [:div
-     [header (-> @router :title)]
+     [header {:title (-> @router :title)
+              :handle-logout handle-logout}]
      [:div {:style {:padding "60px 0 64px 0"}}
       [(-> @router :component)
        (-> @router :params)]]
