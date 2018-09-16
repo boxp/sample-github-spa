@@ -9,8 +9,8 @@
 (defn box
   [params]
   (reagent/create-class
-    {:component-did-mount (fn [] (re-frame/dispatch [::events/initialize]))
-     :reagent-render (fn [params]
-                       [component/box #(re-frame/dispatch [::events/login])])}))
+   {:component-did-mount (fn [] (re-frame/dispatch [::events/initialize]))
+    :reagent-render (fn [params]
+                      [component/box #(re-frame/dispatch [::events/login])])}))
 
 (loader/set-loaded! :auth)

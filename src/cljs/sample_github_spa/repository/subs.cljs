@@ -8,16 +8,16 @@
    (-> db :repository :repositories)))
 
 (re-frame/reg-sub
-  ::should-load-more?
-  (fn [db]
-    (zero? (mod (-> db :repository :repositories count)
-                (-> db :repository :per-page)))))
+ ::should-load-more?
+ (fn [db]
+   (zero? (mod (-> db :repository :repositories count)
+               (-> db :repository :per-page)))))
 
 (re-frame/reg-sub
-  ::get-repository-by-id
-  (fn [db [_ id]]
-    (some->> db
-             :repository
-             :repositories
-             (filter #(-> % :id (= id)))
-             first)))
+ ::get-repository-by-id
+ (fn [db [_ id]]
+   (some->> db
+            :repository
+            :repositories
+            (filter #(-> % :id (= id)))
+            first)))

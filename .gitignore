@@ -5,6 +5,7 @@
 /resources/public/prod/js/compiled
 /dev-resources
 /nashhorn_code_cache
+/node_modules
 out
 *.swp
 .nrepl-port

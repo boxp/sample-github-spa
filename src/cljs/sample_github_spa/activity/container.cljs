@@ -13,13 +13,13 @@
         should-load-more? (re-frame/subscribe [::subs/should-load-more?])
         handle-load-more #(re-frame/dispatch [::events/fetch-next-own-activities])]
     (reagent/create-class
-      {:component-did-mount (fn [] (re-frame/dispatch [::events/refresh-own-activities]))
-       :reagent-render (fn [params]
+     {:component-did-mount (fn [] (re-frame/dispatch [::events/refresh-own-activities]))
+      :reagent-render (fn [params]
+                        [:div
+                         [component/timeline {:activities @activities}]
                          [:div
-                          [component/timeline {:activities @activities}]
-                          [:div
-                           [sample-github-spa.component/infinite-scroll {:can-show-more? @should-load-more?
-                                                                         :load-fn handle-load-more}]]])})))
+                          [sample-github-spa.component/infinite-scroll {:can-show-more? @should-load-more?
+                                                                        :load-fn handle-load-more}]]])})))
 
 (defn ^:export detail
   [params]

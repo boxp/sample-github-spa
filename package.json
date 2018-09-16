@@ -1,0 +1,31 @@
+{
+  "name": "sample-github-spa",
+  "version": "1.0.0",
+  "description": "A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.",
+  "main": "workbox-config.js",
+  "scripts": {
+    "clean": "lein clean",
+    "repl": "lein repl",
+    "figwheel": "lein figwheel",
+    "format": "lein cljfmt fix",
+    "build": "npm run build:prod",
+    "build:dev": "npm run build:dev:client",
+    "build:prod": "npm run build:prod:client",
+    "build:dev:client": "lein cljsbuild once dev",
+    "build:prod:client": "lein cljsbuild once prod && workbox generateSW",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boxp/sample-github-spa.git"
+  },
+  "author": "boxp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boxp/sample-github-spa/issues"
+  },
+  "homepage": "https://github.com/boxp/sample-github-spa#readme",
+  "dependencies": {
+    "workbox-cli": "^3.5.0"
+  }
+}

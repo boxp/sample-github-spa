@@ -10,7 +10,8 @@
               :output-to (str output-dir "/activity.js")
               :depends-on #{:client}}
    :client {:entries #{"sample-github-spa.client"}
-            :output-to (str output-dir "/app.js")}
+            :output-to (str output-dir "/app.js")
+            :depends-on #{:cljs-base}}
    :cljs-base {:output-to (str output-dir "/cljs_base.js")}})
 
 (defproject sample-github-spa "0.1.0-SNAPSHOT"
@@ -54,7 +55,7 @@
                     :external-config      {:devtools/config {:features-to-install :all}}
                     :modules ~(modules "resources/public/js/compiled")}}
 
-    {:id           "min"
+    {:id           "prod"
      :source-paths ["src/cljs"]
      :compiler     {:main sample-github-spa.client
                     :output-dir      "resources/public/prod/js/compiled"
@@ -62,6 +63,4 @@
                     :optimizations   :advanced
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false
-                    :modules ~(modules "resources/public/prod/js/compiled")}}
-    ]}
-  )
+                    :modules ~(modules "resources/public/prod/js/compiled")}}]})

@@ -1,9 +1,9 @@
 (ns sample-github-spa.activity.events
   (:require
-    [re-frame.core :as re-frame]
-    [ajax.core :as ajax]
-    [day8.re-frame.http-fx]
-    [sample-github-spa.events :as events]))
+   [re-frame.core :as re-frame]
+   [ajax.core :as ajax]
+   [day8.re-frame.http-fx]
+   [sample-github-spa.events :as events]))
 
 (def activities-per-page 20)
 

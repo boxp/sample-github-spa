@@ -1,6 +1,6 @@
 (ns sample-github-spa.repository.component
   (:require
-    [sample-github-spa.component]))
+   [sample-github-spa.component]))
 
 (defn- grid-item-image
   [image]

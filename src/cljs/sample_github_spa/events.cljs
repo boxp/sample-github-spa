@@ -27,18 +27,18 @@
    {:db (assoc db :api-error error)}))
 
 (re-frame/reg-event-fx
-  ::flush-token
-  (fn [{:keys [db]} _]
-    {:db (-> db
-             (assoc :token nil))
-     ::effects/set-localstorage ["access-token" nil]}))
+ ::flush-token
+ (fn [{:keys [db]} _]
+   {:db (-> db
+            (assoc :token nil))
+    ::effects/set-localstorage ["access-token" nil]}))
 
 (re-frame/reg-event-fx
-  ::redirect-to-auth
-  (fn [{:keys [db]} _]
-    {::effects/route ["/"]}))
+ ::redirect-to-auth
+ (fn [{:keys [db]} _]
+   {::effects/route ["/"]}))
 
 (re-frame/reg-event-fx
-  ::logout
-  (fn [{:keys [db]} _]
-    {:dispatch-n [[::flush-token] [::redirect-to-auth]]}))
+ ::logout
+ (fn [{:keys [db]} _]
+   {:dispatch-n [[::flush-token] [::redirect-to-auth]]}))

@@ -110,13 +110,13 @@
   ([threshold f] (debounce threshold f (constantly nil)))
   ([threshold f prep-fn]
    (let [t (atom nil)]
-    (fn [& args]
-      (when @t (js/clearTimeout @t))
-      (apply prep-fn args)
-      (reset! t (js/setTimeout #(do
-                                  (reset! t nil)
-                                  (apply f args))
-                               threshold))))))
+     (fn [& args]
+       (when @t (js/clearTimeout @t))
+       (apply prep-fn args)
+       (reset! t (js/setTimeout #(do
+                                   (reset! t nil)
+                                   (apply f args))
+                                threshold))))))
 
 (defn infinite-scroll [props]
   ;; props is a map with :can-show-more? & :load-fn keys
@@ -153,14 +153,14 @@
                                        (.addEventListener js/window "scroll" @listener-fn)
                                        (.addEventListener js/window "resize" @listener-fn)))))]
     (r/create-class
-      {:component-did-mount
-       (fn [this]
-         (attach-scroll-listener this))
-       :component-did-update
-       (fn [this _]
-         (attach-scroll-listener this))
-       :component-will-unmount
-       detach-scroll-listener
-       :reagent-render
-       (fn [props]
-         [:div])})))
+     {:component-did-mount
+      (fn [this]
+        (attach-scroll-listener this))
+      :component-did-update
+      (fn [this _]
+        (attach-scroll-listener this))
+      :component-will-unmount
+      detach-scroll-listener
+      :reagent-render
+      (fn [props]
+        [:div])})))
