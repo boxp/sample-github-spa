@@ -34,6 +34,8 @@
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport"
             :content "width=device-width,initial-scale=1"}]
+    (when-not dev?
+      [:link {:rel "manifest" :href "/manifest.json"}])
     [:style "
       /* http://meyerweb.com/eric/tools/css/reset/
          v2.0 | 20110126
@@ -133,6 +135,7 @@
 
 (doto app
   (.use "/sw.js" (.static express (str static-file-path "sw.js")))
+  (.use "/manifest.json" (.static express (str static-file-path "manifest.json")))
   (.use "static" (.static express static-file-path))
   (.use "/static" (.static express static-file-path))
   (.use "/*" handle-render))

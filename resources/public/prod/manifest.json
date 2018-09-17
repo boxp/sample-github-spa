@@ -1,0 +1,14 @@
+{
+  "short_name": "Sample GitHub SPA",
+  "name": "BOXP",
+  "start_url": "/",
+  "background_color": "#00adb5",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [{
+    "src": "/static/img/icon/github-192x192.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "theme_color": "#00adb5"
+}
