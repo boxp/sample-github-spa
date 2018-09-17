@@ -1,8 +1,7 @@
 (ns sample-github-spa.db)
 
 (def default-db
-  {:router {:title ""
-            :component (fn [] [:div "loading..."])
+  {:router {:key :loading
             :params {}}
    :repository {:repositories []
                 :per-page 20

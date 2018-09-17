@@ -7,18 +7,16 @@
 
 (re-frame/reg-event-fx
  ::initialize
- [(re-frame/inject-cofx ::coeffects/local-store "access-token")]
- (fn [{:keys [local-store]} [_ history]]
+ (fn [{:keys []} [_ history preload]]
    (as-> {:db db/default-db} $
-     (assoc-in $ [:db :history] history)
-     (if local-store (assoc-in $ [:db :token] local-store) $))))
+     (if preload (update $ :db #(merge % preload)))
+     (if history (assoc-in $ [:db :history] history) $))))
 
 (re-frame/reg-event-db
  ::push
- (fn [db [_ title component params]]
+ (fn [db [_ key params]]
    (-> db
-       (assoc-in [:router :title] title)
-       (assoc-in [:router :component] component)
+       (assoc-in [:router :key] key)
        (assoc-in [:router :params] params))))
 
 (re-frame/reg-event-fx
@@ -42,3 +40,10 @@
  ::logout
  (fn [{:keys [db]} _]
    {:dispatch-n [[::flush-token] [::redirect-to-auth]]}))
+
+(re-frame/reg-event-fx
+ ::restore-access-token
+ [(re-frame/inject-cofx ::coeffects/local-store "access-token")]
+ (fn [{:keys [db local-store]} _]
+   (when local-store
+     {:db (assoc db :token local-store)})))

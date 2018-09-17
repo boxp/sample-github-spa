@@ -3,20 +3,23 @@ module.exports = {
   "globPatterns": [
     "js/compiled/*.js"
   ],
+  "modifyUrlPrefix": {
+      "js/compiled": "/static/js/compiled",
+  },
   "swDest": "resources/public/prod/sw.js",
   "runtimeCaching": [
-      {
-          "urlPattern": "/**/",
-          "handler": "networkFirst",
-          "options": {
-              "cacheableResponse": {
-                  "statuses": [0, 200],
-                  "headers": {
-                      "Content-type": "text/html",
-                  },
-              },
-          },
-      },
+      // {
+      //     "urlPattern": "#<{(||)}>#*",
+      //     "handler": "networkFirst",
+      //     "options": {
+      //         "cacheableResponse": {
+      //             "statuses": [0, 200],
+      //             "headers": {
+      //                 "Content-type": "text/html; charset=utf-8",
+      //             },
+      //         },
+      //     },
+      // },
       {
           "urlPattern": "https://use.fontawesome.com/releases/**/*",
           "handler": "cacheFirst",

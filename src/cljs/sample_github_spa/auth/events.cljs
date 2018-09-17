@@ -15,7 +15,7 @@
                                    :storageBucket "sample-github-spa.appspot.com",
                                    :messagingSenderId "227585262670"}
     :dispatch-n [[::get-access-token]
-                 [::restore-access-token]]}))
+                 [::login-with-access-token]]}))
 
 (re-frame/reg-event-fx
  ::login
@@ -55,7 +55,7 @@
                                    :on-failure [:on-failure-get-access-token]}}))
 
 (re-frame/reg-event-fx
- ::restore-access-token
+ ::login-with-access-token
  [(re-frame/inject-cofx ::sample-github-spa.coeffects/local-store "access-token")]
  (fn [{:keys [db local-store]} _]
    (when local-store

@@ -3,7 +3,8 @@
             [re-frame.core :as re-frame]
             [secretary.core :as secretary]
             [sample-github-spa.events]
-            [sample-github-spa.subs]))
+            [sample-github-spa.subs]
+            [sample-github-spa.route :as route]))
 
 (defn- logout
   [{:keys [handle-logout]}]
@@ -78,12 +79,12 @@
   (let [router (re-frame/subscribe [::sample-github-spa.subs/router])
         handle-logout #(re-frame/dispatch [::sample-github-spa.events/logout])]
     [:div
-     [header {:title (-> @router :title)
+     [header {:title (-> @router :key route/route-table :title)
               :handle-logout handle-logout}]
      [:div {:style {:padding "60px 0 64px 0"}}
-      [(-> @router :component)
+      [(or (some-> @router :key route/route-table :container .call) loading)
        (-> @router :params)]]
-     (when-not (= (-> @router :title) "Login") [nav-bar])]))
+     (when-not (= (-> @router :key) :login) [nav-bar])]))
 
 ;; infinite-scroller
 ;; from https://gist.github.com/nberger/b5e316a43ffc3b7d5e084b228bd83899

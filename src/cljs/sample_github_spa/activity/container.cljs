@@ -1,11 +1,11 @@
 (ns sample-github-spa.activity.container
-  (:require [cljs.loader :as loader]
-            [reagent.core :as reagent]
+  (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [sample-github-spa.component]
             [sample-github-spa.activity.component :as component]
             [sample-github-spa.activity.subs :as subs]
-            [sample-github-spa.activity.events :as events]))
+            [sample-github-spa.activity.events :as events]
+            [sample-github-spa.util :as util]))
 
 (defn ^:export timeline
   [params]
@@ -26,4 +26,4 @@
   (let [activity (re-frame/subscribe [::subs/get-activity-by-id (:id params)])]
     [component/detail {:activity @activity}]))
 
-(loader/set-loaded! :activity)
+(util/universal-set-loaded! :activity)

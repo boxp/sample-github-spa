@@ -1,14 +1,16 @@
 (ns sample-github-spa.client
   (:require
    [cljs.loader :as loader]
+   [cljs.reader :as reader]
    [pushy.core :as pushy]
    [reagent.core :as reagent]
    [re-frame.core :as re-frame]
    [sample-github-spa.events :as events]
    [sample-github-spa.component :as component]
-   [sample-github-spa.route]
+   [sample-github-spa.route :as route]
    [sample-github-spa.repository.component :as repository]
    [sample-github-spa.config :as config]
+   [sample-github-spa.util :as util]
    [secretary.core :as secretary :refer-macros [defroute]]))
 
 (defn dev-setup []
@@ -29,11 +31,21 @@
   (reagent/render [component/app]
                   (.getElementById js/document "app")))
 
+(defn- preload-state []
+  (some->
+    js/window
+    (aget "preload")
+    reader/read-string))
+
 (defn ^:export init []
-  (re-frame/dispatch-sync [::events/initialize history])
-  (dev-setup)
-  (hook-history)
-  (mount-root))
+  (let [preload (preload-state)]
+    (util/universal-load (-> preload :router :key route/route-table :module-name)
+      (fn []
+        (re-frame/dispatch-sync [::events/initialize history preload])
+        (re-frame/dispatch-sync [::events/restore-access-token])
+        (dev-setup)
+        (hook-history)
+        (mount-root)))))
 
 (set! (. js/window -onload) init)
 

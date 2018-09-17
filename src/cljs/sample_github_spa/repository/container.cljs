@@ -1,10 +1,10 @@
 (ns sample-github-spa.repository.container
-  (:require [cljs.loader :as loader]
-            [reagent.core :as reagent]
+  (:require [reagent.core :as reagent]
             [sample-github-spa.component]
             [sample-github-spa.repository.component :as component]
             [sample-github-spa.repository.subs :as subs]
             [sample-github-spa.repository.events :as events]
+            [sample-github-spa.util :as util]
             [re-frame.core :as re-frame]))
 
 ;; metaデータがcljs.loader/loadによって上書きされるためreagent/create-classでLifecycleを定義している
@@ -28,4 +28,4 @@
   (let [repository (re-frame/subscribe [::subs/get-repository-by-id (js/Number id)])]
     [component/detail @repository]))
 
-(loader/set-loaded! :repository)
+(util/universal-set-loaded! :repository)

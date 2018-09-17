@@ -9,10 +9,10 @@
    :activity {:entries #{"sample-github-spa.activity.container"}
               :output-to (str output-dir "/activity.js")
               :depends-on #{:client}}
+   :cljs-base {:output-to (str output-dir "/cljs_base.js")}
    :client {:entries #{"sample-github-spa.client"}
             :output-to (str output-dir "/app.js")
-            :depends-on #{:cljs-base}}
-   :cljs-base {:output-to (str output-dir "/cljs_base.js")}})
+            :depends-on #{:cljs-base}}})
 
 (defproject sample-github-spa "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0"]
@@ -22,7 +22,7 @@
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
                  [day8.re-frame/http-fx "0.1.6"]
-                 [cljsjs/firebase "5.0.4-1"]]
+                 [cljsjs/firebase "5.4.2-1"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 
@@ -45,22 +45,47 @@
   :cljsbuild
   {:builds
    [{:id           "dev"
-     :source-paths ["src/cljs"]
+     :source-paths ["src/cljs" "src/cljs-client"]
      :figwheel     {:on-jsload "sample-github-spa.client/mount-root"}
      :compiler     {:main sample-github-spa.client
                     :output-dir      "resources/public/js/compiled"
-                    :asset-path      "js/compiled"
+                    :asset-path      "/static/js/compiled"
                     :source-map-timestamp true
                     :preloads [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
+                    :npm-deps false
                     :modules ~(modules "resources/public/js/compiled")}}
 
     {:id           "prod"
-     :source-paths ["src/cljs"]
+     :source-paths ["src/cljs" "src/cljs-client"]
      :compiler     {:main sample-github-spa.client
                     :output-dir      "resources/public/prod/js/compiled"
-                    :asset-path      "js/compiled"
+                    :asset-path      "/static/js/compiled"
                     :optimizations   :advanced
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false
-                    :modules ~(modules "resources/public/prod/js/compiled")}}]})
+                    :npm-deps false
+                    :modules ~(modules "resources/public/prod/js/compiled")}}
+    {:id           "server-dev"
+     :source-paths ["src/cljs" "src/cljs-server"]
+     :compiler     {:main sample-github-spa.server
+                    :output-dir      "target/server/js/compiled"
+                    :output-to      "target/server/js/compiled/server.js"
+                    :asset-path      "target/server/js/compiled"
+                    :source-map-timestamp true
+                    :target :nodejs
+                    :npm-deps false
+                    :closure-defines {sample-github-spa.server/dev? true
+                                      sample-github-spa.server/static-file-path "resources/public/"}
+                    :pretty-print    true}}
+    {:id           "server-prod"
+     :source-paths ["src/cljs" "src/cljs-server"]
+     :compiler     {:main sample-github-spa.server
+                    :output-dir      "target/server/prod/js/compiled"
+                    :output-to      "target/server/prod/js/compiled/server.js"
+                    :asset-path      "target/server/prod/js/compiled"
+                    :target :nodejs
+                    :npm-deps false
+                    :closure-defines {sample-github-spa.server/dev? false
+                                      sample-github-spa.server/static-file-path "resources/public/prod/"}
+                    :pretty-print    false}}]})
