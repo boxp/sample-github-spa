@@ -22,7 +22,11 @@
 (re-frame/reg-event-fx
  ::api-error
  (fn [{:keys [db]} [_ error]]
-   {:db (assoc db :api-error error)}))
+   (as-> {:db (assoc db :api-error error)} $
+     ;; 認証エラーの場合、ログイン画面へ戻す
+     (if (= (:status error) 401)
+       (assoc $ ::effects/route ["/"])
+       $))))
 
 (re-frame/reg-event-fx
  ::flush-token
