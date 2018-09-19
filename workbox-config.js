@@ -9,7 +9,7 @@ module.exports = {
   "swDest": "resources/public/prod/sw.js",
   "runtimeCaching": [
       {
-          "urlPattern": /^\//,
+          "urlPattern": /\//,
           "handler": "networkFirst",
           "options": {
               "cacheableResponse": {
