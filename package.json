@@ -2,12 +2,12 @@
   "name": "sample-github-spa",
   "version": "1.0.0",
   "description": "A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.",
-  "main": "workbox-config.js",
   "scripts": {
     "clean": "lein clean",
     "repl": "lein repl",
     "figwheel": "lein figwheel",
     "format": "lein cljfmt fix",
+    "workbox": "workbox generateSW",
     "watch": "npm run watch:server",
     "watch:server": "npm run watch:dev:server",
     "watch:dev:server": "npm-run-all -p watch:dev:server:*",
@@ -20,9 +20,10 @@
     "build:dev": "npm run build:dev:client && npm run build:server",
     "build:prod": "npm run build:prod:client && npm run build:prod:server",
     "build:dev:client": "lein cljsbuild once dev",
-    "build:prod:client": "lein cljsbuild once prod && workbox generateSW",
+    "build:prod:client": "lein cljsbuild once prod && npm run workbox",
     "build:dev:server": "lein cljsbuild once server-dev",
     "build:prod:server": "lein cljsbuild once server-prod",
+    "deploy:now": "now --docker --public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
