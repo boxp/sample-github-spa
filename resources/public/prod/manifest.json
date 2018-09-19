@@ -4,7 +4,7 @@
   "start_url": "/",
   "background_color": "white",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "icons": [{
     "src": "/static/img/icon/github-192x192.png",
     "type": "image/png",
