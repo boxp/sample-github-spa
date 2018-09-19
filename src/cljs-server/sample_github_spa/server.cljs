@@ -14,9 +14,6 @@
     [sample-github-spa.events :as events]
     [sample-github-spa.route]))
 
-;; for firebase
-(set! (. js/global -fetch) (js/require "node-fetch"))
-
 (def express (js/require "express"))
 (def ^:export app (express))
 
