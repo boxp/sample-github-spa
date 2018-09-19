@@ -35,6 +35,10 @@
     (when-not dev?
       [:link {:rel "manifest" :href "/manifest.json"}])
     [:style "
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+      }
+
       /* http://meyerweb.com/eric/tools/css/reset/
          v2.0 | 20110126
        License: none (public domain)
