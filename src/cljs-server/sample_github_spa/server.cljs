@@ -34,6 +34,7 @@
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport"
             :content "width=device-width,initial-scale=1"}]
+    [:meta {:name "theme-color" :content "#00adb5"}]
     (when-not dev?
       [:link {:rel "manifest" :href "/manifest.json"}])
     [:style "
