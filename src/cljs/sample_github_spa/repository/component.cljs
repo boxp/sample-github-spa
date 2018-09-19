@@ -55,15 +55,16 @@
   [title content]
   [:div {:style {:display "flex"
                  :justify-content "space-between"
+                 :flex-direction "column"
                  :color "#222831"
                  :width "100%"}}
-   [:span title]
-   [:span content]])
+   [:span {:style {:font-weight "bold"
+                   :font-size "24px"}} title]
+   [:span {:style {:margin-top "8px"}} content]])
 
 (defn detail
   [repository]
   [:div {:style {:width "100%"
-                 :height "100%"
                  :display "flex"
                  :justify-content "space-between"
                  :align-items "center"
@@ -76,4 +77,4 @@
                   :font-size "24px"
                   :display "flex"
                   :flex-direction "column"}}
-    [detail-information-item "name:" (-> repository :name)]]])
+    [detail-information-item "name" (-> repository :name)]]])

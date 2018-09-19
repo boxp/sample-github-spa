@@ -2,7 +2,7 @@
   "short_name": "GitHub SPA",
   "name": "BOXP",
   "start_url": "/",
-  "background_color": "#00adb5",
+  "background_color": "white",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [{

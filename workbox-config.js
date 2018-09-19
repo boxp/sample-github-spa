@@ -10,7 +10,7 @@ module.exports = {
   "runtimeCaching": [
       {
           "urlPattern": /\//,
-          "handler": "networkFirst",
+          "handler": "staleWhileRevalidate",
           "options": {
               "cacheableResponse": {
                   "statuses": [0, 200],
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
           "urlPattern": /^https\:\/\/api\.github\.com\//,
-          "handler": "networkFirst",
+          "handler": "staleWhileRevalidate",
           "options": {
               "cacheableResponse": {
                   "statuses": [0, 200],
