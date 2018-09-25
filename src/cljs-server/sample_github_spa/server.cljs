@@ -138,6 +138,7 @@
 (doto app
   (.use "/sw.js" (.static express (str static-file-path "sw.js")))
   (.use "/manifest.json" (.static express (str static-file-path "manifest.json")))
+  (.use "/favicon.ico" (.static express (str static-file-path "favicon.ico")))
   (.use "static" (.static express static-file-path))
   (.use "/static" (.static express static-file-path))
   (.use "/*" handle-render))
