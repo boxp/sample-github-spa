@@ -9,6 +9,8 @@
    :activity {:entries #{"sample-github-spa.activity.container"}
               :output-to (str output-dir "/activity.js")
               :depends-on #{:client}}
+   ;; 分割されたモジュールをロードするために最低限必要なモジュール
+   ;; モジュールの分割を行うと必ずこのモジュールが分割されるので出力先ファイル名だけ変更している
    :cljs-base {:output-to (str output-dir "/cljs_base.js")}
    :client {:entries #{"sample-github-spa.client"}
             :output-to (str output-dir "/app.js")
