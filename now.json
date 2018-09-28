@@ -2,4 +2,5 @@
   "features": {
     "cloud": "v2"
   }
+  "type": "docker"
 }
