@@ -1,7 +1,7 @@
 {
   "features": {
     "cloud": "v2"
-  }
+  },
   "type": "docker",
   "alias": "sample-github-spa"
 }
