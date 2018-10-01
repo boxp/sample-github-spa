@@ -8,7 +8,6 @@
    [sample-github-spa.events :as events]
    [sample-github-spa.component :as component]
    [sample-github-spa.route :as route]
-   [sample-github-spa.repository.component :as repository]
    [sample-github-spa.config :as config]
    [sample-github-spa.util :as util]
    [secretary.core :as secretary :refer-macros [defroute]]))
