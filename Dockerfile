@@ -1,4 +1,4 @@
-FROM node:8.14-alpine as npm
+FROM node:8.15-alpine as npm
 RUN mkdir -p /usr/src/app
 COPY . /usr/src/app
 WORKDIR /usr/src/app
