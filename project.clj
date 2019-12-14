@@ -24,7 +24,7 @@
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
                  [day8.re-frame/http-fx "0.1.6"]
-                 [cljsjs/firebase "5.4.2-1"]]
+                 [cljsjs/firebase "7.5.0-0"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 
