@@ -20,7 +20,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.339"]
                  [reagent "0.8.1"]
-                 [re-frame "0.10.6"]
+                 [re-frame "0.12.0"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
                  [day8.re-frame/http-fx "0.1.6"]
