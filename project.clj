@@ -19,7 +19,7 @@
 (defproject sample-github-spa "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.339"]
-                 [reagent "0.8.1"]
+                 [reagent "0.10.0"]
                  [re-frame "0.10.6"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
