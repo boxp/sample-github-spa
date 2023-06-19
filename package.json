@@ -45,7 +45,7 @@
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "whatwg-fetch": "3.0.0",
-    "workbox-cli": "3.6.3",
+    "workbox-cli": "7.0.0",
     "xmlhttprequest": "1.8.0"
   }
 }
