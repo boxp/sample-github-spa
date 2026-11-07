@@ -23,7 +23,7 @@
                  [re-frame "0.12.0"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
-                 [day8.re-frame/http-fx "0.1.6"]
+                 [day8.re-frame/http-fx "0.2.4"]
                  [cljsjs/firebase "5.7.3-1"]]
 
   :plugins [[lein-cljsbuild "1.1.8"]]
