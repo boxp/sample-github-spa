@@ -17,7 +17,7 @@
             :depends-on #{:cljs-base}}})
 
 (defproject sample-github-spa "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.10.339"]
                  [reagent "0.8.1"]
                  [re-frame "0.10.6"]
