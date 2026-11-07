@@ -17,16 +17,16 @@
             :depends-on #{:cljs-base}}})
 
 (defproject sample-github-spa "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.339"]
-                 [reagent "0.8.1"]
-                 [re-frame "0.10.6"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/clojurescript "1.11.121"]
+                 [reagent "0.10.0"]
+                 [re-frame "0.12.0"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.8"]
-                 [day8.re-frame/http-fx "0.1.6"]
-                 [cljsjs/firebase "5.4.2-1"]]
+                 [day8.re-frame/http-fx "0.2.4"]
+                 [cljsjs/firebase "5.7.3-1"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]]
+  :plugins [[lein-cljsbuild "1.1.8"]]
 
   :min-lein-version "2.5.3"
 
@@ -38,9 +38,9 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.9.10"]]
-    :plugins      [[lein-figwheel "0.5.16"]
-                   [lein-cljfmt "0.6.0"]]}
+   {:dependencies [[binaryage/devtools "0.9.11"]]
+    :plugins      [[lein-figwheel "0.5.20"]
+                   [lein-cljfmt "0.9.2"]]}
    :prod { }
    }
 
