@@ -26,7 +26,7 @@
                  [day8.re-frame/http-fx "0.1.6"]
                  [cljsjs/firebase "5.4.2-1"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]]
+  :plugins [[lein-cljsbuild "1.1.8"]]
 
   :min-lein-version "2.5.3"
 
